@@ -27,6 +27,7 @@ const register = (req, res) => {
 }
 
 const login = (req, res) => {
+  console.log(req.body)
   const { email, password } = req.body;
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);

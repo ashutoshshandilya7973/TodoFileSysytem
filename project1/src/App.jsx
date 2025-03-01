@@ -9,13 +9,13 @@ function App() {
 
   return (
   <>
-    <Home/>
+    {/* <Home/> */}
     {/* <ProfileCard/> */}
     {/* <ProfileCard/>
     <ProfileCard/>
     <ProfileCard/> */}
     {/* <Register/> */}
-    {/* <Login/> */}
+    <Login/>
 
   </>
   )

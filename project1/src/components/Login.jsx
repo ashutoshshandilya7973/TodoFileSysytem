@@ -1,11 +1,21 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { apiClient } from '../utils/axiosInstance';
 const Login = () => {
 const {register,handleSubmit,formState:{error,isSubmitting},reset}=useForm();
   
-const onSubmitForm=(data)=>{
-  console.log(data);
-  reset()
+const onSubmitForm= async (data)=>{
+   
+    try {
+        // console.log(data)
+        const response = await apiClient.post('/user/login',data)
+        console.log(response)
+        reset()
+        
+    } catch (error) {
+        console.log(error)
+    }
+  
 }
 
     return (

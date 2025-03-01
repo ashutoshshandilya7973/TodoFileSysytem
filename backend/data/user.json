@@ -3,5 +3,25 @@
     "name": "ashu",
     "email": "ashu@gmail.com",
     "password": "$2b$10$fkGhhi.Q1DP2zjebJgy4KezQvfAxKlyQ4V8rGYd01aMx3HeZ1Z8qq"
+  },
+  {
+    "name": "saurabh",
+    "email": "admin@admin.com",
+    "password": "$2b$10$3KNH4XvDc3UDau0Ae5MVxu6IGiqhmQOJdI6rh3wKXizvJM5NnLAr2"
+  },
+  {
+    "name": "aniket",
+    "email": "harry@den.com",
+    "password": "$2b$10$X5ZduPnRbx4A3/qmtxZXH.M//uw1t4zhL0bIQKYsKPGrUlFqY9Qwa"
+  },
+  {
+    "name": "suhani",
+    "email": "ashu@gmail.com",
+    "password": "$2b$10$NuiSZc2njRUG0T/FIQSr2e8uepJu9kaWZIj5a60cr3D8eeLyMyVOe"
+  },
+  {
+    "name": "subham",
+    "email": "pinki@gmail.com",
+    "password": "$2b$10$sinlrpL6TY2XxBZNyrX44embUNK/3E6WrxYXbVAiFYfCoQN7VlQyG"
   }
 ]
