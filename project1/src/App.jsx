@@ -1,5 +1,7 @@
 import { ProfileCard } from "./components/Card"
+import Login from "./components/Login"
 import Home from "./components/pages/Home"
+import Register from "./components/Register"
 
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
     {/* <ProfileCard/>
     <ProfileCard/>
     <ProfileCard/> */}
+    {/* <Register/> */}
+    {/* <Login/> */}
 
   </>
   )
