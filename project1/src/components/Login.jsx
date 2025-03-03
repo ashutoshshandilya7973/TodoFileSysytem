@@ -7,7 +7,7 @@ const {register,handleSubmit,formState:{error,isSubmitting},reset}=useForm();
 const onSubmitForm= async (data)=>{
    
     try {
-        // console.log(data)
+        
         const response = await apiClient.post('/user/login',data)
         console.log(response)
         reset()

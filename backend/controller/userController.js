@@ -41,7 +41,7 @@ const login = (req, res) => {
     const pass = bcrypt.compareSync(password, info.password)
     if(pass){
       const token =jwt.sign(email,process.env.TOKEN_SECRET_KEY)
-      res.status(200).send({message:"you have login in successfully",token:token})
+      res.status(200).send({message:"you have login in successfully",token:token,user:info.name})
 
     }else{
       res.status(400).send({message:"invalid password please enter the right password"})
