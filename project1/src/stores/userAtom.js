@@ -1,9 +1,15 @@
 import {atom,selector} from 'recoil'
-import {useEffect} from 'react'
 
+function getUserInfo(){
+    return {
+        user:localStorage.getItem("name"),
+        token:localStorage.getItem("token")
+    }
+    
+}
 const userInfo = atom({
     key:'userInfo',
-    default:{user:null,token:null}
+    default:getUserInfo()
 })
 
 const isAuthenticated=selector({

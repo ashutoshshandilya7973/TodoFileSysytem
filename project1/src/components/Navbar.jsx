@@ -1,6 +1,7 @@
 import React from 'react'
-
+import { useAuth } from '../utils/authFunction'
 const Navbar = () => {
+  const {logout}=useAuth()
   return (
     <div className="navbar bg-base-300 rounded-md">
     <div className="flex-1">
@@ -26,8 +27,8 @@ const Navbar = () => {
             </a>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
-        </ul>
+          <li><button onClick={logout}>Logout</button></li>
+          </ul>
       </div>
     </div>
   </div>
