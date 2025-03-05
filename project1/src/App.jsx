@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState,Suspense } from "react"
 import { ProfileCard } from "./components/Card"
 import Login from "./components/Login"
 import Home from "./components/pages/Home"
@@ -22,7 +22,9 @@ function App() {
      <Routes >
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/" element={isAuth? <Home /> : <Navigate to="/login" />} />
+        <Route path="/" element={isAuth?(<Suspense fallback={<div>Loading...</div>}>
+        <Home />
+      </Suspense>) : <Navigate to="/login" />} />
         </Routes> 
      
      

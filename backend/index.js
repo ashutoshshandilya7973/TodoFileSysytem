@@ -4,6 +4,8 @@ import {router as userRoute} from './routes/user.js'
 import {router as todoRoute} from './routes/todo.js';
 const app=express();
 app.use(express.json())
+app.use(express.urlencoded({ extended: true })); 
+
 app.use(cors())
 const port =3000;
 

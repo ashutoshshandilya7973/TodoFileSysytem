@@ -1,18 +1,20 @@
 import fs from 'fs'
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const filePath = path.resolve(__dirname, '../data/todo.json');
 
-const getTodo=(req,res)=>{
-    const {user}=req.body;
-    const data =fs.readFileSync(filePath,'utf-8');
-    const newData=data?JSON.parse(data):[];
-    const userTodo=newData.filter((data)=>data.user===user);
-    res.status(200).send({message:"Here is the list of all your specific todo",todo:userTodo})
+const getTodo = (req, res) => {
+    const user = req.query.user;
+    
+    const data = fs.readFileSync(filePath, 'utf-8');
+    const newData = data ? JSON.parse(data) : [];
+    const userTodo = newData.filter((data) => data.user === user);
+    res.status(200).send({ message: "Here is the list of all your specific todo", todo: userTodo })
 }
 
 const createtodo = (req, res) => {
@@ -22,9 +24,9 @@ const createtodo = (req, res) => {
     const data = fs.readFileSync(filePath, 'utf8');
     const newData = data ? JSON.parse(data) : [];
     console.log(newData)
-    const id = newData.length + 1;
+    const id = newData.length > 0 ? newData : 1
     const upload = {
-        id: id,
+        id: uuidv4(),
         user: user,
         title: title,
         body: body,
@@ -61,6 +63,7 @@ const editTodo = (req, res) => {
 
 const deleteTodo = (req, res) => {
     const { id } = req.body;
+    
     const data = fs.readFileSync(filePath, 'utf-8');
     const newData = data ? JSON.parse(data) : [];
     const upload = newData.filter((data) => data.id !== id);
@@ -70,4 +73,4 @@ const deleteTodo = (req, res) => {
     res.status(200).send({ message: "The given todo has been deleted from the database" })
 }
 
-export { createtodo, editTodo, deleteTodo,getTodo }
+export { createtodo, editTodo, deleteTodo, getTodo }

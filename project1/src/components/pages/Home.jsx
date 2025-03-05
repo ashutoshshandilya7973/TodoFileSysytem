@@ -1,14 +1,25 @@
-import React, { useState } from 'react'
+import React, {Suspense, useEffect, useState } from 'react'
 import { Navbar } from '../Navbar'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ProfileCard } from '../Card';
-
+import { Newpost } from '../Newpost';
+import { getTodo } from '../../stores/todoAtom';
+import { useRecoilValue } from 'recoil';
 const Home = () => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [newtask, setNewtask] = useState(false);
+    // const [trigger,setTrigger]=useState(true)
+    
+        const data =useRecoilValue(getTodo)
+    
+        
+
+
     return (
+        
+
         <div className="min-h-screen flex flex-col">
             <Navbar />
             <div className="flex flex-1">
@@ -63,13 +74,21 @@ const Home = () => {
                             />
                         </div>
                     </div>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
                         <div className="bg-sky-100 h-full text-black rounded-lg p-3">
                             <div className="p-2 flex gap-2 items-center text-base font-bold">
                                 <div className="h-1 w-1 bg-blue-600 rounded-full p-[6px]"></div>
-                                <h1>To Start</h1>
+                                <h1>All Todo</h1>
                             </div>
-                            <ProfileCard />
+                            {  
+                               
+                                data.map((data)=>{
+                                     return <ProfileCard key={data.id} title={data.title} body={data.body} id={data.id} />
+                                })
+                            }                         
+
+                          
                             <div className="bg-blue-600 text-white w-52 mt-3  h-10 flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer hover:bg-blue-700" onClick={()=>setNewtask(!newtask)}>
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M10 2a1 1 0 011 1v6h6a1 1 0 110 2h-6v6a1 1 0 11-2 0v-6H3a1 1 0 110-2h6V3a1 1 0 011-1z" clipRule="evenodd" />
@@ -77,20 +96,7 @@ const Home = () => {
                                 <span className="text-sm font-medium">New Task</span>
                             </div>
                             {
-                                !newtask && (<div className="max-w-sm mx-auto mt-2 bg-white shadow-lg rounded-2xl p-4">
-                                    <input
-                                        type="text"
-                                        placeholder="Title"
-                                        className="w-full p-2 mb-2 border text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                    />
-                                    <textarea
-                                        placeholder="Description"
-                                        className="w-full p-2 mb-2 border rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                    ></textarea>
-                                    <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600" onClick={()=>setNewtask(!newtask)}>
-                                        Add Task
-                                    </button>
-                                </div>)
+                                newtask && <Newpost newtask={newtask} setNewtask={setNewtask}/>
                             }
                         </div>
                         <div className="bg-sky-100 h-full text-black rounded-lg p-3">
@@ -98,7 +104,13 @@ const Home = () => {
                                 <div className="h-1 w-1 bg-orange-500 rounded-full p-[6px]"></div>
                                 <h1>In Progress</h1>
                             </div>
-                            <ProfileCard />
+                            {
+                                data.map((data)=>{
+                                    if(!data.isCompleted){
+                                        return <ProfileCard key={data.id} title={data.title} body={data.body} id={data.id}/>
+                                    }
+                                })
+                            }
 
                         </div>
                         <div className="bg-sky-100 h-full text-black rounded-lg p-3">
@@ -106,12 +118,20 @@ const Home = () => {
                                 <div className="h-1 w-1 bg-green-800 rounded-full p-[6px]"></div>
                                 <h1>Completed</h1>
                             </div>
-                            <ProfileCard />
+                            {
+                                data.map((data)=>{
+                                    if(data.isCompleted){
+                                        return <ProfileCard key={data.id} title={data.title} body={data.body} id={data.id}/>
+                                    }
+                                })
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+
     )
 }
 
