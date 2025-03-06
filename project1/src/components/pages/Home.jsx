@@ -10,7 +10,7 @@ const Home = () => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [newtask, setNewtask] = useState(false);
-    // const [trigger,setTrigger]=useState(true)
+    
     
         const data =useRecoilValue(getTodo)
     

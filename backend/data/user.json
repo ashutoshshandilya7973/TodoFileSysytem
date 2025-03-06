@@ -13,5 +13,10 @@
     "name": "saurabh",
     "email": "admin@admin.com",
     "password": "$2b$10$tkcSumfN9F6n/VkkxmfT6up.o72QACVkts2naUDCWZ.585EVuKhB2"
+  },
+  {
+    "name": "suhani",
+    "email": "suhani@gmail.com",
+    "password": "$2b$10$3q6idDIoB.zk1weaBBerf.KB2W8vgTghxurDFBza7p4.LfP9DW6hG"
   }
 ]

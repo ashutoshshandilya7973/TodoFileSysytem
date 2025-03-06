@@ -72,5 +72,17 @@ const deleteTodo = (req, res) => {
 
     res.status(200).send({ message: "The given todo has been deleted from the database" })
 }
-
-export { createtodo, editTodo, deleteTodo, getTodo }
+const completeTodo=(req,res)=>{
+    const {id}=req.body;
+    const data=fs.readFileSync(filePath,'utf-8');
+    const newData=data?JSON.parse(data):[];
+    const upload= newData.map((data)=>{
+        if(data.id===id){
+            data.isCompleted=true;
+        }
+        return data;
+    })
+    fs.writeFileSync(filePath,JSON.stringify(upload,null,2),'utf-8');
+    res.status(200).send({message:"The given todo is completed Successfully"})
+}
+export { createtodo, editTodo, deleteTodo, getTodo,completeTodo }
